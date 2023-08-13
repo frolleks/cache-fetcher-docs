@@ -1,17 +1,16 @@
 # API Reference
 
-Since cache-fetcher uses [axios](https://axios-http.com) under the hood, the API is mostly similar.
+The cacheFetcher object provides methods for making HTTP requests (GET, POST, PUT, DELETE) using redaxios. It also maintains a simple caching mechanism for GET requests.
 
 ## JavaScript
 
 ### GET
 
-```js
-const { data, isLoading, isError, error } = await cacheFetcher.get(
-  url,
-  options
-);
+```ts
+get(url: string, options?: Options): Promise<{data: any, isLoading: boolean, isError: boolean, error: unknown}>
 ```
+
+Fetches data from the given URL using the GET method and optionally caches the result.
 
 #### Parameters
 
@@ -27,14 +26,11 @@ const { data, isLoading, isError, error } = await cacheFetcher.get(
 
 ### POST
 
-```js
-const { data, isLoading, isError, error } = await cacheFetcher.post(
-  url,
-  body,
-  contentType,
-  options
-);
+```ts
+post(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isLoading: boolean, isError: boolean, error: unknown}>
 ```
+
+Sends data to the given URL using the POST method.
 
 #### Parameters
 
@@ -52,23 +48,15 @@ const { data, isLoading, isError, error } = await cacheFetcher.post(
 
 ### PUT
 
-```js
-const { data, isLoading, isError, error } = await cacheFetcher.put(
-  url,
-  body,
-  contentType,
-  options
-);
+```ts
+put(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isLoading: boolean, isError: boolean, error: unknown}>
 ```
+
+Updates data at the given URL using the PUT method.
 
 #### Parameters
 
-The parameters for this are the same as the POST method.
-
-- `url`: The url endpoint for the request
-- `body`: The request body
-- `contentType`: _(optional)_ The "Content-Type" header's value, if blank its `application/json`
-- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+Same as the POST method.
 
 #### Return Values
 
@@ -79,12 +67,11 @@ The parameters for this are the same as the POST method.
 
 ### DELETE
 
-```js
-const { data, isLoading, isError, error } = await cacheFetcher.delete(
-  url,
-  options
-);
+```ts
+delete(url: string, options?: Options): Promise<{data: any, isLoading: boolean, isError: boolean, error: unknown}>
 ```
+
+Deletes data at the given URL using the DELETE method.
 
 #### Parameters
 
