@@ -1,0 +1,111 @@
+# Quick Start
+
+## Installation
+
+First, install the package with your favorite package manager:
+
+```sh
+npm i cache-fetcher
+yarn add cache-fetcher
+pnpm add cache-fetcher
+```
+
+Then use it with one of the following ways:
+
+## Usage
+
+### JavaScript
+
+Import the package:
+
+```js filename="index.js"
+import { cacheFetcher } from "cache-fetcher";
+```
+
+then make a request:
+
+```js filename="index.js"
+const { data, isLoading, isError, error } = await cacheFetcher.get(
+  "https://jsonplaceholder.typicode.com/todos/1"
+);
+```
+
+and then do what you want with it, for example:
+
+```js filename="index.js"
+if (isloading) console.log("Loading...");
+if (isError) console.log(error?.message);
+
+console.log(data);
+```
+
+Full example:
+
+```js filename="index.js"
+import { cacheFetcher } from "cache-fetcher";
+
+const { data, isLoading, isError, error } = await cacheFetcher.get(
+  "https://jsonplaceholder.typicode.com/todos/1"
+);
+
+if (isloading) console.log("Loading...");
+if (isError) console.log(error?.message);
+
+console.log(data);
+```
+
+### React
+
+Import the `useCacheFetcher` hook:
+
+```jsx filename="Component.jsx"
+import { useCacheFetcher } from "cache-fetcher/react";
+```
+
+then make a request:
+
+```jsx filename="Component.jsx"
+function Component() {
+  const { data, isLoading, isError, error } = useCacheFetcher(
+    "https://jsonplaceholder.typicode.com/todos/1"
+  );
+}
+```
+
+and then do what you want with it:
+
+```jsx filename="Component.jsx"
+function Component() {
+  // ...
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error?.message}</div>;
+
+  return (
+    <div>
+      <p>{data.title}</p>
+    <div>
+  )
+}
+```
+
+Full example:
+
+```jsx filename="Component.jsx"
+import { useCacheFetcher } from "cache-fetcher/react";
+
+function Component() {
+  const { data, isLoading, isError, error } = useCacheFetcher(
+    "https://jsonplaceholder.typicode.com/todos/1"
+  );
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error?.message}</div>;
+
+  return (
+    <div>
+      <p>{data.title}</p>
+    <div>
+  )
+}
+```

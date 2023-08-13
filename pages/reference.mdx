@@ -1,0 +1,101 @@
+# API Reference
+
+Since cache-fetcher uses [axios](https://axios-http.com) under the hood, the API is mostly similar.
+
+## JavaScript
+
+### GET
+
+```js
+const { data, isLoading, isError, error } = await cacheFetcher.get(
+  url,
+  options
+);
+```
+
+#### Parameters
+
+- `url`: The url endpoint for the request
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+#### Return Values
+
+- `data`: The response data returned from the server
+- `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
+- `isError`: Returns `true` when request fails
+- `error`: Error thrown from server
+
+### POST
+
+```js
+const { data, isLoading, isError, error } = await cacheFetcher.post(
+  url,
+  body,
+  contentType,
+  options
+);
+```
+
+#### Parameters
+
+- `url`: The url endpoint for the request
+- `body`: The request body
+- `contentType`: _(optional)_ The "Content-Type" header's value, if blank its `application/json`
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+#### Return Values
+
+- `data`: The response data returned from the server
+- `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
+- `isError`: Returns `true` when request fails
+- `error`: Error thrown from server
+
+### PUT
+
+```js
+const { data, isLoading, isError, error } = await cacheFetcher.put(
+  url,
+  body,
+  contentType,
+  options
+);
+```
+
+#### Parameters
+
+The parameters for this are the same as the POST method.
+
+- `url`: The url endpoint for the request
+- `body`: The request body
+- `contentType`: _(optional)_ The "Content-Type" header's value, if blank its `application/json`
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+#### Return Values
+
+- `data`: The response data returned from the server
+- `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
+- `isError`: Returns `true` when request fails
+- `error`: Error thrown from server
+
+### DELETE
+
+```js
+const { data, isLoading, isError, error } = await cacheFetcher.delete(
+  url,
+  options
+);
+```
+
+#### Parameters
+
+The parameters for this are the same as the POST method.
+
+- `url`: The url endpoint for the request
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+#### Return Values
+
+- `data`: The response data returned from the server
+- `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
+- `isError`: Returns `true` when request fails
+- `error`: Error thrown from server
