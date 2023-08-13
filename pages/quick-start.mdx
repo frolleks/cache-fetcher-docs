@@ -42,7 +42,7 @@ console.log(data);
 Full example:
 
 ```js filename="index.js"
-import { cacheFetcher } from "cache-fetcher";
+import * as cacheFetcher from "cache-fetcher";
 
 const { data, isLoading, isError, error } = await cacheFetcher.get(
   "https://jsonplaceholder.typicode.com/todos/1"
