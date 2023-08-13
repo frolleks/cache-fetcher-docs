@@ -87,6 +87,66 @@ The parameters for this are the same as the POST method.
 - `isError`: Returns `true` when request fails
 - `error`: Error thrown from server
 
+### HEAD
+
+```ts
+head(url: string, options?: Options): Promise<{headers: any, status: number, isError: boolean, error: unknown}>
+```
+
+Retrieves the headers and status code from the given URL using the HEAD method.
+
+#### Parameters
+
+- `url`: The url endpoint for the request
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+#### Return Values
+
+- `headers`: The response headers returned from the server
+- `status`: The status code of the response
+- `isError`: Returns `true` when request fails
+- `error`: Error thrown from server
+
+### OPTIONS
+
+```ts
+options(url: string, options?: Options): Promise<{options: any, isError: boolean, error: unknown}>
+```
+
+Retrieves the communication options from the given URL using the OPTIONS method.
+
+#### Parameters
+
+- `url`: The url endpoint for the request
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+#### Return Values
+
+- `options`: The communication options returned from the server
+- `isError`: Returns `true` when request fails
+- `error`: Error thrown from server
+
+### PATCH
+
+```ts
+patch(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isError: boolean, error: unknown}>
+```
+
+Updates data to the given URL using the PATCH method.
+
+#### Parameters
+
+- `url`: The url endpoint for the request
+- `body`: The request body
+- `contentType`: _(optional)_ The "Content-Type" header's value, if blank its `application/json`
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+#### Return Values
+
+- `data`: The response data returned from the server
+- `isError`: Returns `true` when request fails
+- `error`: Error thrown from server
+
 ## React
 
 ### useCacheFetcher
@@ -194,4 +254,90 @@ const handleDelete = () => {
 };
 
 // Rest of your component
+```
+
+### usePatchFetcher
+
+This hook handles updating partial data to the given URL using the PATCH method.
+
+#### Return Values
+
+- `data`: The PATCH response data.
+- `isSubmitting`: A boolean indicating the submission state.
+- `isError`: A boolean indicating if an error occurred.
+- `error`: The error that occurred.
+- `patch`: A function to initiate the PATCH request.
+  ```ts
+  patch(url: string, body: any, contentType: string = "application/json", options: Options)
+  ```
+
+#### Example
+
+```jsx
+const { data, isSubmitting, isError, error, patch } = usePatchFetcher();
+
+const handlePatch = () => {
+  patch("/api/patch/1", { name: "Patched Example" });
+};
+
+// Rest of your component
+```
+
+### useHeadFetcher
+
+This hook fetches headers from the given URL using the HEAD method.
+
+#### Parameters
+
+- `url`: The URL to fetch.
+- `options`: Additional options for the fetch request.
+
+#### Return Values
+
+- `headers`: The fetched headers.
+- `status`: The status code.
+- `isLoading`: A boolean indicating if the fetching is ongoing.
+- `isError`: A boolean indicating if an error occurred.
+- `error`: The error that occurred.
+
+#### Example
+
+```jsx
+const { headers, status, isLoading, isError, error } =
+  useHeadFetcher("/api/headers");
+
+if (isLoading) return <div>Loading...</div>;
+if (isError) return <div>Error: {error}</div>;
+return (
+  <div>
+    Status: {status}, Headers: {JSON.stringify(headers)}
+  </div>
+);
+```
+
+### useOptionsFetcher
+
+This hook retrieves the communication options from the target URL using the OPTIONS method.
+
+#### Parameters
+
+- `url`: The URL to fetch.
+- `options`: Additional options for the fetch request.
+
+#### Return Values
+
+- `options`: The communication options.
+- `isLoading`: A boolean indicating if the fetching is ongoing.
+- `isError`: A boolean indicating if an error occurred.
+- `error`: The error that occurred.
+
+#### Example
+
+```jsx
+const { options, isLoading, isError, error } =
+  useOptionsFetcher("/api/options");
+
+if (isLoading) return <div>Loading...</div>;
+if (isError) return <div>Error: {error}</div>;
+return <div>Options: {JSON.stringify(options)}</div>;
 ```
