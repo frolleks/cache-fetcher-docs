@@ -7,7 +7,7 @@ The cacheFetcher object provides methods for making HTTP requests (GET, POST, PU
 ### GET
 
 ```ts
-get(url: string, options?: Options): Promise<{data: any, isLoading: boolean, isError: boolean, error: unknown}>
+get(url: string, options?: Options): Promise<{data: any, isLoading: boolean, error: unknown}>
 ```
 
 Fetches data from the given URL using the GET method and optionally caches the result.
@@ -21,13 +21,12 @@ Fetches data from the given URL using the GET method and optionally caches the r
 
 - `data`: The response data returned from the server
 - `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
-- `isError`: Returns `true` when request fails
 - `error`: Error thrown from server
 
 ### POST
 
 ```ts
-post(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isLoading: boolean, isError: boolean, error: unknown}>
+post(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isLoading: boolean, error: unknown}>
 ```
 
 Sends data to the given URL using the POST method.
@@ -43,13 +42,12 @@ Sends data to the given URL using the POST method.
 
 - `data`: The response data returned from the server
 - `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
-- `isError`: Returns `true` when request fails
 - `error`: Error thrown from server
 
 ### PUT
 
 ```ts
-put(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isLoading: boolean, isError: boolean, error: unknown}>
+put(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isLoading: boolean, error: unknown}>
 ```
 
 Updates data at the given URL using the PUT method.
@@ -62,13 +60,12 @@ Same as the POST method.
 
 - `data`: The response data returned from the server
 - `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
-- `isError`: Returns `true` when request fails
 - `error`: Error thrown from server
 
 ### DELETE
 
 ```ts
-delete(url: string, options?: Options): Promise<{data: any, isLoading: boolean, isError: boolean, error: unknown}>
+delete(url: string, options?: Options): Promise<{data: any, isLoading: boolean, error: unknown}>
 ```
 
 Deletes data at the given URL using the DELETE method.
@@ -84,13 +81,12 @@ The parameters for this are the same as the POST method.
 
 - `data`: The response data returned from the server
 - `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
-- `isError`: Returns `true` when request fails
 - `error`: Error thrown from server
 
 ### HEAD
 
 ```ts
-head(url: string, options?: Options): Promise<{headers: any, status: number, isError: boolean, error: unknown}>
+head(url: string, options?: Options): Promise<{headers: any, status: number, error: unknown}>
 ```
 
 Retrieves the headers and status code from the given URL using the HEAD method.
@@ -104,13 +100,12 @@ Retrieves the headers and status code from the given URL using the HEAD method.
 
 - `headers`: The response headers returned from the server
 - `status`: The status code of the response
-- `isError`: Returns `true` when request fails
 - `error`: Error thrown from server
 
 ### OPTIONS
 
 ```ts
-options(url: string, options?: Options): Promise<{options: any, isError: boolean, error: unknown}>
+options(url: string, options?: Options): Promise<{options: any, error: unknown}>
 ```
 
 Retrieves the communication options from the given URL using the OPTIONS method.
@@ -123,13 +118,12 @@ Retrieves the communication options from the given URL using the OPTIONS method.
 #### Return Values
 
 - `options`: The communication options returned from the server
-- `isError`: Returns `true` when request fails
 - `error`: Error thrown from server
 
 ### PATCH
 
 ```ts
-patch(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isError: boolean, error: unknown}>
+patch(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, error: unknown}>
 ```
 
 Updates data to the given URL using the PATCH method.
@@ -144,7 +138,6 @@ Updates data to the given URL using the PATCH method.
 #### Return Values
 
 - `data`: The response data returned from the server
-- `isError`: Returns `true` when request fails
 - `error`: Error thrown from server
 
 ## React
@@ -162,16 +155,15 @@ This hook handles fetching data from the given URL using the GET method.
 
 - `data`: The fetched data.
 - `isLoading`: A boolean indicating if the fetching is ongoing.
-- `isError`: A boolean indicating if an error occurred.
 - `error`: The error that occurred.
 
 #### Example
 
 ```jsx
-const { data, isLoading, isError, error } = useCacheFetcher("/api/data");
+const { data, isLoading, error } = useCacheFetcher("/api/data");
 
 if (isLoading) return <div>Loading...</div>;
-if (isError) return <div>Error: {error}</div>;
+if (error) return <div>Error: {error}</div>;
 return <div>{data}</div>;
 ```
 
@@ -183,7 +175,6 @@ This hook handles making a POST request.
 
 - `data`: The POST response data.
 - `isSubmitting`: A boolean indicating the submission state.
-- `isError`: A boolean indicating if an error occurred.
 - `error`: The error that occurred.
 - `post`: A function to initiate the POST request.
   ```ts
@@ -193,7 +184,7 @@ This hook handles making a POST request.
 #### Example
 
 ```jsx
-const { data, isSubmitting, isError, error, post } = usePostFetcher();
+const { data, isSubmitting, error, post } = usePostFetcher();
 
 const handleSubmit = () => {
   post("/api/create", { name: "Example" });
@@ -210,7 +201,6 @@ This hook handles updating data on the server using the PUT method.
 
 - `data`: The PUT response data.
 - `isSubmitting`: A boolean indicating the submission state.
-- `isError`: A boolean indicating if an error occurred.
 - `error`: The error that occurred.
 - `put`: A function to initiate the PUT request.
   ```ts
@@ -220,7 +210,7 @@ This hook handles updating data on the server using the PUT method.
 #### Example
 
 ```jsx
-const { data, isSubmitting, isError, error, put } = usePutFetcher();
+const { data, isSubmitting, error, put } = usePutFetcher();
 
 const handleUpdate = () => {
   put("/api/update/1", { name: "Updated Example" });
@@ -237,7 +227,6 @@ This hook handles deleting data from the server using the DELETE method.
 
 - `data`: The DELETE response data.
 - `isSubmitting`: A boolean indicating the submission state.
-- `isError`: A boolean indicating if an error occurred.
 - `error`: The error that occurred.
 - `del`: A function to initiate the DELETE request.
   ```ts
@@ -247,7 +236,7 @@ This hook handles deleting data from the server using the DELETE method.
 #### Example
 
 ```jsx
-const { data, isSubmitting, isError, error, del } = useDeleteFetcher();
+const { data, isSubmitting, error, del } = useDeleteFetcher();
 
 const handleDelete = () => {
   del("/api/delete/1");
@@ -264,7 +253,6 @@ This hook handles updating partial data to the given URL using the PATCH method.
 
 - `data`: The PATCH response data.
 - `isSubmitting`: A boolean indicating the submission state.
-- `isError`: A boolean indicating if an error occurred.
 - `error`: The error that occurred.
 - `patch`: A function to initiate the PATCH request.
   ```ts
@@ -274,7 +262,7 @@ This hook handles updating partial data to the given URL using the PATCH method.
 #### Example
 
 ```jsx
-const { data, isSubmitting, isError, error, patch } = usePatchFetcher();
+const { data, isSubmitting, error, patch } = usePatchFetcher();
 
 const handlePatch = () => {
   patch("/api/patch/1", { name: "Patched Example" });
@@ -297,17 +285,15 @@ This hook fetches headers from the given URL using the HEAD method.
 - `headers`: The fetched headers.
 - `status`: The status code.
 - `isLoading`: A boolean indicating if the fetching is ongoing.
-- `isError`: A boolean indicating if an error occurred.
 - `error`: The error that occurred.
 
 #### Example
 
 ```jsx
-const { headers, status, isLoading, isError, error } =
-  useHeadFetcher("/api/headers");
+const { headers, status, isLoading, error } = useHeadFetcher("/api/headers");
 
 if (isLoading) return <div>Loading...</div>;
-if (isError) return <div>Error: {error}</div>;
+if (error) return <div>Error: {error}</div>;
 return (
   <div>
     Status: {status}, Headers: {JSON.stringify(headers)}
@@ -328,16 +314,14 @@ This hook retrieves the communication options from the target URL using the OPTI
 
 - `options`: The communication options.
 - `isLoading`: A boolean indicating if the fetching is ongoing.
-- `isError`: A boolean indicating if an error occurred.
 - `error`: The error that occurred.
 
 #### Example
 
 ```jsx
-const { options, isLoading, isError, error } =
-  useOptionsFetcher("/api/options");
+const { options, isLoading, error } = useOptionsFetcher("/api/options");
 
 if (isLoading) return <div>Loading...</div>;
-if (isError) return <div>Error: {error}</div>;
+if (error) return <div>Error: {error}</div>;
 return <div>Options: {JSON.stringify(options)}</div>;
 ```
