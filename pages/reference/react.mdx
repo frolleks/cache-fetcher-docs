@@ -1,0 +1,185 @@
+# cache-fetcher API Reference (React)
+
+## useCacheFetcher
+
+This hook handles fetching data from the given URL using the GET method.
+
+### Parameters
+
+- `url`: The URL to fetch.
+- `options`: Additional options for the fetch request.
+
+### Return Values
+
+- `data`: The fetched data.
+- `isLoading`: A boolean indicating if the fetching is ongoing.
+- `error`: The error that occurred.
+
+### Example
+
+```jsx
+const { data, isLoading, error } = useCacheFetcher("/api/data");
+
+if (isLoading) return <div>Loading...</div>;
+if (error) return <div>Error: {error}</div>;
+return <div>{data}</div>;
+```
+
+## usePostFetcher
+
+This hook handles making a POST request.
+
+### Return Values
+
+- `data`: The POST response data.
+- `isSubmitting`: A boolean indicating the submission state.
+- `error`: The error that occurred.
+- `post`: A function to initiate the POST request.
+  ```ts
+  post(url: string, body: any, contentType: string = "application/json", options: Options)
+  ```
+
+### Example
+
+```jsx
+const { data, isSubmitting, error, post } = usePostFetcher();
+
+const handleSubmit = () => {
+  post("/api/create", { name: "Example" });
+};
+
+// Rest of your component
+```
+
+## usePutFetcher
+
+This hook handles updating data on the server using the PUT method.
+
+### Return Values
+
+- `data`: The PUT response data.
+- `isSubmitting`: A boolean indicating the submission state.
+- `error`: The error that occurred.
+- `put`: A function to initiate the PUT request.
+  ```ts
+  put(url: string, body: any, contentType: string = "application/json", options: Options)
+  ```
+
+### Example
+
+```jsx
+const { data, isSubmitting, error, put } = usePutFetcher();
+
+const handleUpdate = () => {
+  put("/api/update/1", { name: "Updated Example" });
+};
+
+// Rest of your component
+```
+
+## useDeleteFetcher
+
+This hook handles deleting data from the server using the DELETE method.
+
+### Return Values
+
+- `data`: The DELETE response data.
+- `isSubmitting`: A boolean indicating the submission state.
+- `error`: The error that occurred.
+- `del`: A function to initiate the DELETE request.
+  ```ts
+  del(url: string, options: Options)
+  ```
+
+### Example
+
+```jsx
+const { data, isSubmitting, error, del } = useDeleteFetcher();
+
+const handleDelete = () => {
+  del("/api/delete/1");
+};
+
+// Rest of your component
+```
+
+## usePatchFetcher
+
+This hook handles updating partial data to the given URL using the PATCH method.
+
+### Return Values
+
+- `data`: The PATCH response data.
+- `isSubmitting`: A boolean indicating the submission state.
+- `error`: The error that occurred.
+- `patch`: A function to initiate the PATCH request.
+  ```ts
+  patch(url: string, body: any, contentType: string = "application/json", options: Options)
+  ```
+
+### Example
+
+```jsx
+const { data, isSubmitting, error, patch } = usePatchFetcher();
+
+const handlePatch = () => {
+  patch("/api/patch/1", { name: "Patched Example" });
+};
+
+// Rest of your component
+```
+
+## useHeadFetcher
+
+This hook fetches headers from the given URL using the HEAD method.
+
+### Parameters
+
+- `url`: The URL to fetch.
+- `options`: Additional options for the fetch request.
+
+### Return Values
+
+- `headers`: The fetched headers.
+- `status`: The status code.
+- `isLoading`: A boolean indicating if the fetching is ongoing.
+- `error`: The error that occurred.
+
+### Example
+
+```jsx
+const { headers, status, isLoading, error } = useHeadFetcher("/api/headers");
+
+if (isLoading) return <div>Loading...</div>;
+if (error) return <div>Error: {error}</div>;
+return (
+  <div>
+    Status: {status}, Headers: {JSON.stringify(headers)}
+  </div>
+);
+```
+
+## useOptionsFetcher
+
+This hook retrieves the communication options from the target URL using the OPTIONS method.
+
+### Parameters
+
+- `url`: The URL to fetch.
+- `options`: Additional options for the fetch request.
+
+### Return Values
+
+- `options`: The communication options.
+- `isLoading`: A boolean indicating if the fetching is ongoing.
+- `error`: The error that occurred.
+
+### Example
+
+```jsx
+const { options, isLoading, error } = useOptionsFetcher("/api/options");
+
+if (isLoading) return <div>Loading...</div>;
+if (error) return <div>Error: {error}</div>;
+return <div>Options: {JSON.stringify(options)}</div>;
+```

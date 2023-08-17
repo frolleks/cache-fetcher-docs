@@ -1,0 +1,137 @@
+# cache-fetcher API Reference (JavaScript)
+
+## GET
+
+```ts
+get(url: string, options?: Options): Promise<{data: any, isLoading: boolean, error: unknown}>
+```
+
+Fetches data from the given URL using the GET method and optionally caches the result.
+
+### Parameters
+
+- `url`: The url endpoint for the request
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+### Return Values
+
+- `data`: The response data returned from the server
+- `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
+- `error`: Error thrown from server
+
+## POST
+
+```ts
+post(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isLoading: boolean, error: unknown}>
+```
+
+Sends data to the given URL using the POST method.
+
+### Parameters
+
+- `url`: The url endpoint for the request
+- `body`: The request body
+- `contentType`: _(optional)_ The "Content-Type" header's value, if blank its `application/json`
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+### Return Values
+
+- `data`: The response data returned from the server
+- `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
+- `error`: Error thrown from server
+
+## PUT
+
+```ts
+put(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, isLoading: boolean, error: unknown}>
+```
+
+Updates data at the given URL using the PUT method.
+
+### Parameters
+
+Same as the POST method.
+
+### Return Values
+
+- `data`: The response data returned from the server
+- `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
+- `error`: Error thrown from server
+
+## DELETE
+
+```ts
+del(url: string, options?: Options): Promise<{data: any, isLoading: boolean, error: unknown}>
+```
+
+Deletes data at the given URL using the DELETE method.
+
+### Parameters
+
+The parameters for this are the same as the POST method.
+
+- `url`: The url endpoint for the request
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+### Return Values
+
+- `data`: The response data returned from the server
+- `isLoading`: Returns `true` when request is ongoing, when done it returns `false`
+- `error`: Error thrown from server
+
+## HEAD
+
+```ts
+head(url: string, options?: Options): Promise<{headers: any, status: number, error: unknown}>
+```
+
+Retrieves the headers and status code from the given URL using the HEAD method.
+
+### Parameters
+
+- `url`: The url endpoint for the request
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+### Return Values
+
+- `headers`: The response headers returned from the server
+- `status`: The status code of the response
+- `error`: Error thrown from server
+
+## OPTIONS
+
+```ts
+options(url: string, options?: Options): Promise<{options: any, error: unknown}>
+```
+
+Retrieves the communication options from the given URL using the OPTIONS method.
+
+### Parameters
+
+- `url`: The url endpoint for the request
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+### Return Values
+
+- `options`: The communication options returned from the server
+- `error`: Error thrown from server
+
+## PATCH
+
+```ts
+patch(url: string, body: any, contentType?: string, options?: Options): Promise<{data: any, error: unknown}>
+```
+
+Updates data to the given URL using the PATCH method.
+
+### Parameters
+
+- `url`: The url endpoint for the request
+- `body`: The request body
+- `contentType`: _(optional)_ The "Content-Type" header's value, if blank its `application/json`
+- `options`: _(optional)_ an object of options, based on [AxiosRequestConfig](https://axios-http.com/docs/req_config).
+
+### Return Values
+
+- `data`: The response data returned from the server
+- `error`: Error thrown from server
